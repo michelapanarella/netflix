@@ -7,6 +7,7 @@
 #from gensim import models
 #import re
 
+#create empty folder called similarity on your desktop/working directory. 
 
 
 def netflix_finder():
@@ -44,8 +45,8 @@ def netflix_finder():
     dictionary = gensim.corpora.Dictionary(description)
     corpus_descriptions = [dictionary.doc2bow(description) for description in description]
     tfidf = models.TfidfModel(corpus_descriptions, smartirs='ntc')
-
-    sims = gensim.similarities.Similarity("/Users/Michela/Desktop/similarity", tfidf[corpus_descriptions],
+    #create an empty folder called similarity - gensim needs this to generate the similarity matrix
+    sims = gensim.similarities.Similarity("/similarity", tfidf[corpus_descriptions],
                                         num_features=len(dictionary))
 
 
