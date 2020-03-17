@@ -59,9 +59,11 @@ def netflix_finder():
         query_doc_bow = dictionary.doc2bow(interest_final) #update an existing dictionary and create bag of words
         query_doc_tf_idf = tfidf[query_doc_bow]
 
-    netflix_filtered['sims'] = sims[query_doc_tf_idf]
-    recommend = netflix_filtered.sort_values(by=['sims'], ascending=False)
-    print(recommend[['title', 'sims']].head(10))
+    netflix_filtered['Similarity_Score'] = sims[query_doc_tf_idf]
+    recommend = netflix_filtered.sort_values(by=['Similarity_Score'], ascending=False)
+    print(recommend[['title', 'Similarity_Score']].loc[recommend['Similarity_Score'] > 0.1])
+
+
 
     
 
